@@ -22,6 +22,6 @@ app.use('/api/polls', routes.poll);
 
 app.use(handle.notFound);
 
-app.use(handle.errors);
+app.use(handle.error);
 
 app.listen(port, console.log('Server started on port', port));

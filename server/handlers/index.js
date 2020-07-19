@@ -9,8 +9,8 @@ module.exports.notFound = (req, res, next) => {
     next(err);
 };
 
-module.exports.errors = (err, req, res, next) => {
-    res.send(err.status || 400).json({
+module.exports.error = (err, req, res, next) => {
+    res.status(err.status || 400).json({
         message: err.message || 'Something went wrong'
     });
 };
