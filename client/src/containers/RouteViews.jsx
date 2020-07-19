@@ -6,8 +6,8 @@ import { getCurrentPoll } from '../store/actions';
 import HomePage from '../pages/Homepage';
 import AuthPage from '../pages/AuthPage';
 import PollPage from '../pages/PollPage';
+import CreatePollPage from '../pages/CreatePollPage';
 import TestPage from '../pages/TestPage';
-import CreatePollPage from '../pages/CreatePoll';
 
 const RouteViews = ({ getCurrentPoll, auth }) => (
   <main className="container">
