@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const handle = require('../handlers');
 const auth = require('../middlewares/auth');
+var ObjectID = require('mongoose').Types.ObjectId;
 
 router
   .route('/')
@@ -13,6 +14,7 @@ router
   .route('/:id')
   .get(handle.getPoll)
   .post(auth, handle.vote)
+  .put(auth, handle.updatePoll)
   .delete(auth, handle.deletePoll);
 
 module.exports = router;

@@ -21,6 +21,6 @@ module.exports = (req, res, next) => {
     //   message: 'No token provided',
     // });
 
-    next(Error('No token provided'));
+    next(Error('You must be logged in'));
   }
 };

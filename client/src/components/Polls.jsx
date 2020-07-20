@@ -27,29 +27,29 @@ class Polls extends Component {
   }
 
   render() {
-    const { getPolls, getUserPolls, auth } = this.props;
+    const { getPolls, getUserPolls, auth, isAuthenticated} = this.props;
 
     const polls = this.props.polls.map(poll => (
       <li>{poll.question}<button className="button" onClick={() => this.handleSelect(poll._id)}>View</button><button className="button" onClick={() => this.handleDelete(poll._id)} key={poll._id}>Delete</button>
       </li>
     ));
 
-
-    return (
-      <Fragment>
-        {auth.isAuthenticated && (
-          <div className="buttons_center">
-            <button className="button" onClick={getPolls}>
-              All polls
-            </button>
-            <button className="button" onClick={getUserPolls}>
-              My polls
-            </button>
-          </div>
-        )}
-        <ul className="polls">{polls}</ul>
-      </Fragment>
-    );
+    if (!isAuthenticated)
+        return (
+          <Fragment>
+            {auth.isAuthenticated && (
+              <div className="buttons_center">
+                <button className="button" onClick={getPolls}>
+                  All polls
+                </button>
+                <button className="button" onClick={getUserPolls}>
+                  My polls
+                </button>
+              </div>
+            )}
+            <ul className="polls">{polls}</ul>
+          </Fragment>
+        );
   }
 }
 

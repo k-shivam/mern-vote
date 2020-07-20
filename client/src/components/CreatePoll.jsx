@@ -32,7 +32,6 @@ class CreatePoll extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
     this.props.createPoll(this.state);
   }
 

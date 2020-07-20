@@ -1,5 +1,7 @@
 const db = require('../models');
 
+var ObjectID = require('mongoose').Types.ObjectId;
+
 exports.showPolls = async (req, res, next) => {
   try {
     const polls = await db.Poll.find().populate('user', ['username', 'id']);
@@ -48,6 +50,24 @@ exports.createPoll = async (req, res, next) => {
       message: err.message,
     });
   }
+};
+
+
+exports.updatePoll = async (req, res, next) => {
+  const {id: userId} = req.decoded;
+  user = db.User.findById(userId)
+  if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("No Record Found with given id")
+
+  console.log(typeof(req.body.question), user)
+  var updatedRecord = {
+    question: req.body.question
+  }
+
+  await db.Poll.findByIdAndUpdate(req.params.id, {$set:updatedRecord},(err, docs)=>{
+    if(!err) res.send(docs)
+    else console.log("Error while updating")
+  })
 };
 
 exports.vote = async (req, res, next) => {
