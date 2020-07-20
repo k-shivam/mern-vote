@@ -35,7 +35,7 @@ const Navbar = ({ auth, logout }) => (
               </Link>
             </li>
             <li>
-              <a className="navbar-item" onClick={logout}>
+              <a className="navbar-item" to="/login" onClick={logout}>
                 Logout
               </a>
             </li>

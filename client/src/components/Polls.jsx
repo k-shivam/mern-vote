@@ -2,19 +2,27 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { getPolls, getUserPolls } from '../store/actions';
+import axios from 'axios';
 
 class Polls extends Component {
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   componentDidMount() {
     const { getPolls } = this.props;
     getPolls();
   }
 
+  handleDelete(id) {
+    axios.delete(`http://localhost:4000/api/polls/${id}`);
+    window.location.reload();
+  }
+
   handleSelect(id) {
     const { history } = this.props;
+    console.log(history);
     history.push(`/poll/${id}`);
   }
 
@@ -22,10 +30,10 @@ class Polls extends Component {
     const { getPolls, getUserPolls, auth } = this.props;
 
     const polls = this.props.polls.map(poll => (
-      <li onClick={() => this.handleSelect(poll._id)} key={poll._id}>
-        {poll.question}
+      <li>{poll.question}<button className="button" onClick={() => this.handleSelect(poll._id)}>View</button><button className="button" onClick={() => this.handleDelete(poll._id)} key={poll._id}>Delete</button>
       </li>
     ));
+
 
     return (
       <Fragment>
