@@ -97,7 +97,7 @@ exports.vote = async (req, res, next) => {
         poll.voted.filter(user => user.toString() === userId).length,
       );
 
-      if (poll.voted.filter(user => user.toString() === userId).length <= 0) {
+      if (poll.voted.filter(user => user.toString() === userId).length <= 5) {
         poll.voted.push(userId);
         poll.options = vote;
         await poll.save();

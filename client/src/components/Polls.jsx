@@ -47,6 +47,9 @@ class Polls extends Component {
                 </button>
               </div>
             )}
+            <div className="buttons_center">
+            <p className="buttons">Login to Delete your polls</p>
+            </div>
             <ul className="polls">{polls}</ul>
           </Fragment>
         );
