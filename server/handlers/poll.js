@@ -55,13 +55,16 @@ exports.createPoll = async (req, res, next) => {
 
 exports.updatePoll = async (req, res, next) => {
   const {id: userId} = req.decoded;
+  const {id: pollId} = req.params;
   user = db.User.findById(userId)
+  polls = await db.Poll.findById(pollId)
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("No Record Found with given id")
 
-  console.log(typeof(req.body.question), user)
+  console.log(typeof(req.body.question), polls.options)
   var updatedRecord = {
-    question: req.body.question
+    question: req.body.question,
+    options: req.body.options.map(option=>({option, votes: 0}))
   }
 
   await db.Poll.findByIdAndUpdate(req.params.id, {$set:updatedRecord},(err, docs)=>{
