@@ -61,7 +61,7 @@ exports.updatePoll = async (req, res, next) => {
   if (!ObjectID.isValid(req.params.id))
     return res.status(400).send("No Record Found with given id")
 
-  console.log(typeof(req.body.question), polls.options)
+  console.log(typeof(req.body.question), polls._doc)
   var updatedRecord = {
     question: req.body.question,
     options: req.body.options.map(option=>({option, votes: 0}))

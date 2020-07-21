@@ -8,7 +8,7 @@ const PollPage = ({ match, getPoll, poll }) => {
 
   return (
     <div>
-      <ErrorMessage />
+     <ErrorMessage />
       <Poll />
     </div>
   );

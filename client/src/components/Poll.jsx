@@ -31,6 +31,7 @@ const Poll = ({ poll, vote }) => {
 
   return (
     <div>
+      <button className="button"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></button>
       <h3 className="poll-title">{poll.question}</h3>
       <div className="buttons_center">{answers}</div>
       <Pie data={data} />
